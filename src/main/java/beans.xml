@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/jdbc
+                           http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<context:component-scan base-package="com.mariam.sprin_jdbc2"></context:component-scan>
+
+<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<constructor-arg name="url" value="jdbc:mysql://localhost:3306/spring-jpa-hibernate"></constructor-arg>
+		<constructor-arg name="username" value="root"></constructor-arg>
+		<constructor-arg name="password" value="root"> </constructor-arg>
+</bean>
+
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+   <constructor-arg name="dataSource"  ref="datasource"></constructor-arg> <!-- dataSourse NOT datasource  , error happen due to small s-->
+</bean>
+
+
+
+
+<!-- create bean by using annotation -->
+<!--  
+<bean id="studentDao" class="com.mariam.sprin_jdbc2.dao.StudentDaoImpl">
+     
+     <constructor-arg name="jdbcTemplate" ref="jdbcTemplate"></constructor-arg>
+</bean>
+-->
+</beans>
